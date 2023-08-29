@@ -27,6 +27,14 @@ class ViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    private lazy var clickButtonLabel: UILabel = {
+       let label = UILabel()
+        label.text = "Click button!"
+        label.font = .systemFont(ofSize: 50, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +46,7 @@ class ViewController: UIViewController {
     private func setupViews() {
         view.addSubview(clickButton)
         view.addSubview(clickCountLabel)
+        view.addSubview(clickButtonLabel)
     }
     
     private func setupConstraints() {
@@ -46,6 +55,9 @@ class ViewController: UIViewController {
         clickButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         clickButton.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
+        clickButtonLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        clickButtonLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100).isActive = true
+        
         clickCountLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         clickCountLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100).isActive = true
     }
@@ -53,6 +65,7 @@ class ViewController: UIViewController {
     @objc func plusCount() {
         clickCount += 1
         clickCountLabel.text = String(clickCount)
+        clickButtonLabel.alpha = 0
     }
 }
 
